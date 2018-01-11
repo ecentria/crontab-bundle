@@ -1,0 +1,39 @@
+{
+    "name": "ecentria/crontab-bundle",
+    "homepage": "https://ecentria.com",
+    "type": "symfony-bundle",
+    "description": "Provides a possibility to auto-setup crontabs required for project based on configuration file.",
+    "keywords": [
+        "crontab",
+        "ecentria",
+        "symfony",
+        "bundle",
+        "job"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Roman Ruskov",
+            "email": "roman.ruskov@gmail.com"
+        },
+        {
+            "name": "Sergey Chernecov",
+            "email": "sergey.chernecov@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0",
+        "symfony/framework-bundle": "^2.0||^3.0",
+        "symfony/validator": "^2.0||^3.0",
+        "symfony/console": "^2.0||^3.0",
+        "dragonmantank/cron-expression": "^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "5.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Ecentria\\Bundle\\CrontabBundle\\": ""
+        }
+    }
+}

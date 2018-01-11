@@ -1,0 +1,33 @@
+services:
+
+    ecentria.crontab.installer:
+        class: Ecentria\Bundle\CrontabBundle\Services\CrontabInstaller
+        arguments:
+            - '@ecentria.crontab.executor'
+            - '@logger'
+            - '%ecentria.crontab.path%'
+            - '%ecentria.crontab.user%'
+        tags:
+            - { name: monolog.logger, channel: console }
+
+    ecentria.crontab.executor:
+        class: Ecentria\Bundle\CrontabBundle\Services\CrontabExecutor
+        arguments:
+            - '@ecentria.crontab.compiler'
+            - '%ecentria.crontab.path%'
+
+    ecentria.crontab.compiler:
+        class: Ecentria\Bundle\CrontabBundle\Services\JobsCompiler
+        arguments:
+            - '@validator'
+            - '%ecentria.crontab.mailto%'
+
+    ecentria.crontab.static_job_provider:
+        class: Ecentria\Bundle\CrontabBundle\Services\StaticJobProvider
+        arguments:
+            - '%ecentria.crontab.jobs%'
+        tags:
+            - { name: ecentria.crontab.job }
+
+    ecentria.crontab.manager.hostname:
+        class: Ecentria\RunitBundle\Services\HostnameManager
