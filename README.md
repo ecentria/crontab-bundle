@@ -16,6 +16,7 @@ Provides a possibility to auto-setup cron jobs required for project based on con
 2. [Configuration](#configuration)
 3. [Usage](#usage)
 4. [License](#license)
+5. [Important Notice](#important-notice)
 
 <br>
 
@@ -142,3 +143,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```
+
+<a name="important-notice"></a>
+## Important Notice
+Ecentria Crontab Bundle schedules jobs using [Crontab](https://en.wikipedia.org/wiki/Cron).
+A best practice for two or more applications that run on the same node is to assign a different user per application.
+
+The best practice mentioned above prevents different applications overwriting each other's configurations.
+One user has only one cron table file, normally stored on /var/spool/cron/ 
