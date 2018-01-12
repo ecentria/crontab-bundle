@@ -34,6 +34,6 @@ class CrontabDumpCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->getContainer()->get('ecentria.crontab.dump_command')->dump();
+        $this->getContainer()->get('ecentria.crontab.executor')->dump();
     }
 }

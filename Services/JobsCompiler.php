@@ -106,6 +106,10 @@ class JobsCompiler
             );
         }
 
+        if (empty($jobs)) {
+            return '';
+        }
+
         return $this->renderFileContent($jobs, $this->email);
     }
 

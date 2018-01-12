@@ -25,9 +25,10 @@ services:
     ecentria.crontab.static_job_provider:
         class: Ecentria\Bundle\CrontabBundle\Services\StaticJobProvider
         arguments:
+            - '@ecentria.crontab.manager.hostname'
             - '%ecentria.crontab.jobs%'
         tags:
             - { name: ecentria.crontab.job }
 
     ecentria.crontab.manager.hostname:
-        class: Ecentria\RunitBundle\Services\HostnameManager
+        class: Ecentria\Bundle\CrontabBundle\Services\HostnameManager

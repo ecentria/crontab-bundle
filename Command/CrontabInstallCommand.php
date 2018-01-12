@@ -34,6 +34,6 @@ class CrontabInstallCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->getContainer()->get('ecentria.crontab.install_command')->install();
+        $this->getContainer()->get('ecentria.crontab.installer')->install();
     }
 }
