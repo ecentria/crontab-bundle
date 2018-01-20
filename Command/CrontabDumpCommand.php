@@ -10,7 +10,8 @@
 
 namespace Ecentria\Bundle\CrontabBundle\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Ecentria\Bundle\CrontabBundle\Services\CrontabExecutor;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -19,8 +20,27 @@ use Symfony\Component\Console\Output\OutputInterface;
  *
  * @author Sergey Chernecov <sergey.chernecov@gmail.com>
  */
-class CrontabDumpCommand extends ContainerAwareCommand
+class CrontabDumpCommand extends Command
 {
+    /**
+     * Crontab executor
+     *
+     * @var CrontabExecutor
+     */
+    private $crontabExecutor;
+
+    /**
+     * Constructor
+     *
+     * @param string|null     $name
+     * @param CrontabExecutor $crontabExecutor
+     */
+    public function __construct($name, CrontabExecutor $crontabExecutor)
+    {
+        parent::__construct($name);
+        $this->crontabExecutor = $crontabExecutor;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -34,6 +54,6 @@ class CrontabDumpCommand extends ContainerAwareCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->getContainer()->get('ecentria.crontab.executor')->dump();
+        $this->crontabExecutor->dump();
     }
 }

@@ -32,3 +32,19 @@ services:
 
     ecentria.crontab.manager.hostname:
         class: Ecentria\Bundle\CrontabBundle\Services\HostnameManager
+
+    ecentria.crontab.dump_command:
+        class: Ecentria\Bundle\CrontabBundle\Command\CrontabDumpCommand
+        arguments:
+            - ~
+            - '@ecentria.crontab.executor'
+        tags:
+            - { name: console.command }
+
+    ecentria.crontab.install_command:
+        class: Ecentria\Bundle\CrontabBundle\Command\CrontabInstallCommand
+        arguments:
+            - ~
+            - '@ecentria.crontab.installer'
+        tags:
+            - { name: console.command }
