@@ -10,6 +10,7 @@
 
 namespace Ecentria\Bundle\CrontabBundle\Services;
 
+use Ecentria\Bundle\CrontabBundle\Exception\InvalidParameterTypeException;
 use Ecentria\Bundle\CrontabBundle\Model\Job;
 
 /**
@@ -40,8 +41,6 @@ class StaticJobProvider implements JobProviderInterface
      *
      * @param HostnameManager $hostnameManager
      * @param array           $jobs
-     *
-     * @throws \Exception
      */
     public function __construct(HostnameManager $hostnameManager, array $jobs)
     {
@@ -125,8 +124,8 @@ class StaticJobProvider implements JobProviderInterface
     private function validateHostname($hostname)
     {
         if (!is_string($hostname)) {
-            throw new \Exception(
-                'Wrong parameter type. Expected "hostname"  to be string.'
+            throw new InvalidParameterTypeException(
+                'Wrong parameter type. Expected "hostname" to be string.'
             );
         }
     }
@@ -147,7 +146,7 @@ class StaticJobProvider implements JobProviderInterface
             isset($instance['parameters']);
 
         if (!$valid) {
-            throw new \Exception(
+            throw new InvalidParameterTypeException(
                 'Wrong instance configuration array is given. ' .
                 'Array should contain (description, frequency, command, parameters) keys.'
             );
