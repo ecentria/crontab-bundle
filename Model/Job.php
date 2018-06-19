@@ -57,16 +57,16 @@ class Job
     /**
      * Job constructor
      *
-     * @param string      $description
-     * @param string      $frequency
-     * @param string      $command
-     * @param string|null $parameters
+     * @param string $description
+     * @param string $frequency
+     * @param string $command
+     * @param string $parameters
      */
     public function __construct(
         string $description,
         string $frequency,
         string $command,
-        string $parameters = null
+        string $parameters
     ) {
         $this->description = $description;
         $this->frequency = $frequency;

@@ -10,6 +10,7 @@
 
 namespace Ecentria\Bundle\CrontabBundle\Services;
 
+use Ecentria\Bundle\CrontabBundle\Exception\InvalidParameterTypeException;
 use Ecentria\Bundle\CrontabBundle\Model\Job;
 
 /**
@@ -46,12 +47,14 @@ class StaticJobProvider implements JobProviderInterface
         $this->hostnameManager = $hostnameManager;
 
         foreach ($jobs as $hostname => $instances) {
+            $this->validateHostname($hostname);
             foreach ($instances as $instance) {
+                $this->validateInstanceConfiguration($instance);
                 $this->jobs[$hostname][] = new Job(
                     (string) $instance['description'],
                     (string) $instance['frequency'],
                     (string) $instance['command'],
-                    !empty($instance['parameters']) ? $instance['parameters'] : null
+                    (string) $instance['parameters']
                 );
             }
         }
@@ -108,5 +111,45 @@ class StaticJobProvider implements JobProviderInterface
         );
 
         throw new \RuntimeException($exceptionMessage);
+    }
+
+    /**
+     * Validate hostname
+     *
+     * @param mixed $hostname
+     *
+     * @return void
+     * @throws \Exception
+     */
+    private function validateHostname($hostname)
+    {
+        if (!is_string($hostname)) {
+            throw new InvalidParameterTypeException(
+                'Wrong parameter type. Expected "hostname" to be string.'
+            );
+        }
+    }
+
+    /**
+     * Validate instance configuration
+     *
+     * @param array $instance
+     *
+     * @return void
+     * @throws \Exception
+     */
+    private function validateInstanceConfiguration(array $instance)
+    {
+        $valid = !empty($instance['description']) &&
+            !empty($instance['frequency']) &&
+            !empty($instance['command']) &&
+            isset($instance['parameters']);
+
+        if (!$valid) {
+            throw new InvalidParameterTypeException(
+                'Wrong instance configuration array is given. ' .
+                'Array should contain (description, frequency, command, parameters) keys.'
+            );
+        }
     }
 }
