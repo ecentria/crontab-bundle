@@ -23,9 +23,9 @@
     ],
     "require": {
         "php": ">=7.0.0",
-        "symfony/framework-bundle": "^2.0||^3.0",
-        "symfony/validator": "^2.0||^3.0",
-        "symfony/console": "^2.0||^3.0",
+        "symfony/framework-bundle": "^2.0||^3.0||^4.0",
+        "symfony/validator": "^2.0||^3.0||^4.0",
+        "symfony/console": "^2.0||^3.0||^4.0",
         "dragonmantank/cron-expression": "^2.0"
     },
     "require-dev": {
