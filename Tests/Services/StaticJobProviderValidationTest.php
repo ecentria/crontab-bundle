@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the ecentria software.
  *
@@ -12,14 +13,14 @@ namespace Ecentria\Bundle\CrontabBundle\Tests\Services;
 
 use Ecentria\Bundle\CrontabBundle\Services\HostnameManager;
 use Ecentria\Bundle\CrontabBundle\Services\StaticJobProvider;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
  * Static job provider test
  *
  * @author Sergey Chernecov <sergey.chernecov@gmail.com>
  */
-class StaticJobProviderValidationTest extends TestCase
+class StaticJobProviderValidationTest extends WebTestCase
 {
     /**
      * Test
@@ -29,6 +30,8 @@ class StaticJobProviderValidationTest extends TestCase
      *
      * @return void
      * @throws \PHPUnit_Framework_Exception
+     *
+     * @dataProvider getData
      */
     public function test(array $configuration, string $message)
     {
@@ -92,7 +95,7 @@ class StaticJobProviderValidationTest extends TestCase
                         ]
                     ]
                 ],
-                'Wrong parameter type. Expected "hostname"  to be string.'
+                'Wrong parameter type. Expected "hostname" to be string.'
             ]
         ];
     }

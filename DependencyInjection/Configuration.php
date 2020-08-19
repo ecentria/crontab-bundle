@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the ecentria group, inc. software.
  *
@@ -28,8 +29,8 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $builder = new TreeBuilder();
-        $rootNode = $builder->root(EcentriaCrontabBundle::ALIAS);
+        $builder = new TreeBuilder(EcentriaCrontabBundle::ALIAS);
+        $rootNode = $builder->getRootNode();
 
         $rootNode
             ->children()

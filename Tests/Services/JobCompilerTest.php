@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the ecentria group, inc. software.
  *
@@ -13,22 +14,20 @@ namespace Ecentria\Bundle\CrontabBundle\Tests\Services;
 use Ecentria\Bundle\CrontabBundle\Model\Job;
 use Ecentria\Bundle\CrontabBundle\Services\JobsCompiler;
 use Ecentria\Bundle\CrontabBundle\Services\JobProviderInterface;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Validator\ConstraintViolation;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
-use \PHPUnit_Framework_MockObject_MockObject as Mock;
+use PHPUnit_Framework_MockObject_MockObject as Mock;
 
 /**
  * Job compiler test
  *
- * @property Mock|EngineInterface    $engine
  * @property Mock|ValidatorInterface $validator
  * @property JobsCompiler            $jobCompiler
  *
  * @author Sergey Chernecov <sergey.chernecov@gmail.com>
  */
-class JobCompilerTest extends TestCase
+class JobCompilerTest extends WebTestCase
 {
     const EMAIL = 'test@example.com';
 

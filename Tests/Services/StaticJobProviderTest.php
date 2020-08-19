@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the ecentria software.
  *
@@ -13,8 +14,8 @@ namespace Ecentria\Bundle\CrontabBundle\Tests\Services;
 use Ecentria\Bundle\CrontabBundle\Model\Job;
 use Ecentria\Bundle\CrontabBundle\Services\HostnameManager;
 use Ecentria\Bundle\CrontabBundle\Services\StaticJobProvider;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
-use \PHPUnit_Framework_MockObject_MockObject as Mock;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use PHPUnit_Framework_MockObject_MockObject as Mock;
 
 /**
  * Static job provider test
@@ -24,7 +25,7 @@ use \PHPUnit_Framework_MockObject_MockObject as Mock;
  *
  * @author Sergey Chernecov <sergey.chernecov@gmail.com>
  */
-class StaticJobProviderTest extends TestCase
+class StaticJobProviderTest extends WebTestCase
 {
     const JOB_1_DESCRIPTION = 'description 1';
     const JOB_2_DESCRIPTION = 'description 2';
