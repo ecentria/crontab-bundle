@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Ecentria\Bundle\CrontabBundle\Tests\Services;
+namespace Ecentria\Bundle\CrontabBundle\Tests\Validator;
 
 use Ecentria\Bundle\CrontabBundle\Validator\Constraints\CrontabSyntax;
 use Ecentria\Bundle\CrontabBundle\Validator\Constraints\CrontabSyntaxValidator;
