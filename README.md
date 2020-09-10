@@ -57,14 +57,14 @@ Sequence of consumers collecting:
 - Exact match will go first, if match is found collecting is finished.
 - Searching for first match by regular expression
 
-config.yml
+config/packages/ecentria_crontab.yml
 ```yaml
 ecentria_crontab:
     path: 'home/sites/shared/crontab' 
     user: 'project_specific_user'
     mailto: 'your.email@address.com'
     jobs:
-        backend.example.com:
+        backend.example.com: # It must contain valid hostname, see Services/StaticJobProvider::provide()
             -
                 description: 'Backend'
                 frequency:   '* * * * *'

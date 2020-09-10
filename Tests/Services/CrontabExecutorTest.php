@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the ecentria group, inc. software.
  *
@@ -13,9 +14,9 @@ namespace Ecentria\Bundle\CrontabBundle\Tests\Services;
 use Ecentria\Bundle\CrontabBundle\Services\CrontabExecutor;
 use Ecentria\Bundle\CrontabBundle\Services\Finder;
 use Ecentria\Bundle\CrontabBundle\Services\JobsCompiler;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Filesystem\Filesystem;
-use \PHPUnit_Framework_MockObject_MockObject as Mock;
+use PHPUnit_Framework_MockObject_MockObject as Mock;
 
 /**
  * Crontab executor test
@@ -27,7 +28,7 @@ use \PHPUnit_Framework_MockObject_MockObject as Mock;
  *
  * @author Sergey Chernecov <sergey.chernecov@gmail.com>
  */
-class CrontabExecutorTest extends TestCase
+class CrontabExecutorTest extends WebTestCase
 {
     const EMAIL = 'test@example.com';
 
