@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the ecentria group, inc. software.
  *
@@ -12,7 +13,7 @@ namespace Ecentria\Bundle\CrontabBundle\Tests\Validator;
 
 use Ecentria\Bundle\CrontabBundle\Validator\Constraints\CrontabSyntax;
 use Ecentria\Bundle\CrontabBundle\Validator\Constraints\CrontabSyntaxValidator;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Validator\Context\ExecutionContext;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use PHPUnit_Framework_MockObject_MockObject as Mock;
@@ -22,7 +23,7 @@ use PHPUnit_Framework_MockObject_MockObject as Mock;
  *
  * @author Sergey Chernecov <sergey.chernecov@gmail.com>
  */
-class CrontabSyntaxValidatorTest extends TestCase
+class CrontabSyntaxValidatorTest extends WebTestCase
 {
     /**
      * Test invalid
