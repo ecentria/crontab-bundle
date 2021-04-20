@@ -77,7 +77,8 @@ class CrontabInstaller
         if ($changed) {
             return $this->executeInstall();
         }
-        return Command::FAILURE;
+
+        return Command::SUCCESS;
     }
 
     /**
