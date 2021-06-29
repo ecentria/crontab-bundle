@@ -60,14 +60,15 @@ class CrontabExecutorTest extends WebTestCase
     /**
      * Test render with changes
      *
+     * @param string $actualContent
+     * @param string $renderedContent
+     *
      * @return void
+     * @dataProvider provideChangedContentData
      */
-    public function testRenderWithChanges()
+    public function testRenderWithChanges(string $actualContent, string $renderedContent)
     {
         $filename = 'foo' . DIRECTORY_SEPARATOR . CrontabExecutor::FILENAME;
-
-        $actualContent = 'foo';
-        $renderedContent = 'bar';
 
         $this->jobCompiler->expects($this->once())
             ->method('render')
@@ -113,5 +114,22 @@ class CrontabExecutorTest extends WebTestCase
             ->method('dumpFile');
 
         $this->assertFalse($this->executor->dump());
+    }
+
+    /**
+     * @return array
+     */
+    public function provideChangedContentData(): array
+    {
+        return [
+            [
+                'actual_content'   => 'foo',
+                'rendered_content' => 'bar',
+            ],
+            [
+                'actual_content'   => 'foo',
+                'rendered_content' => '',
+            ],
+        ];
     }
 }

@@ -12,7 +12,6 @@
 namespace Ecentria\Bundle\CrontabBundle\Services;
 
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Console\Command\Command;
 
 /**
  * Crontab installer
@@ -68,24 +67,25 @@ class CrontabInstaller
     /**
      * Install
      *
-     * @return int
+     * @return bool
      */
-    public function install(): int
+    public function install(): bool
     {
         $changed = $this->executor->dump();
 
         if ($changed) {
             return $this->executeInstall();
         }
-        return Command::FAILURE;
+
+        return true;
     }
 
     /**
      * Execute install
      *
-     * @return int
+     * @return bool
      */
-    private function executeInstall(): int
+    private function executeInstall(): bool
     {
         $this->validateUser();
 
@@ -102,11 +102,13 @@ class CrontabInstaller
                     'crontab' => file_get_contents($source)
                 ]
             );
-            return Command::SUCCESS;
+
+            return true;
         }
 
         $this->logger->error('New crontab was NOT installed');
-        return Command::FAILURE;
+
+        return false;
     }
 
     /**

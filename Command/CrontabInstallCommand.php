@@ -55,6 +55,10 @@ class CrontabInstallCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        return $this->crontabInstaller->install();
+        if (!$this->crontabInstaller->install()) {
+            return self::FAILURE;
+        }
+
+        return self::SUCCESS;
     }
 }
