@@ -79,11 +79,6 @@ class CrontabExecutor
         $filename = $this->path . DIRECTORY_SEPARATOR . self::FILENAME;
 
         $renderedContent = $this->compiler->render();
-
-        if (!$renderedContent) {
-            return false;
-        }
-
         $actualContent = $this->finder->getContent($filename);
 
         if ($renderedContent === $actualContent) {
