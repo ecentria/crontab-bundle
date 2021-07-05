@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the Ecentria software.
  *
@@ -66,23 +67,25 @@ class CrontabInstaller
     /**
      * Install
      *
-     * @return void
+     * @return bool
      */
-    public function install()
+    public function install(): bool
     {
         $changed = $this->executor->dump();
 
         if ($changed) {
-            $this->executeInstall();
+            return $this->executeInstall();
         }
+
+        return true;
     }
 
     /**
      * Execute install
      *
-     * @return void
+     * @return bool
      */
-    private function executeInstall()
+    private function executeInstall(): bool
     {
         $this->validateUser();
 
@@ -99,10 +102,13 @@ class CrontabInstaller
                     'crontab' => file_get_contents($source)
                 ]
             );
-            return;
+
+            return true;
         }
 
         $this->logger->error('New crontab was NOT installed');
+
+        return false;
     }
 
     /**

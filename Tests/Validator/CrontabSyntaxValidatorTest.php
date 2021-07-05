@@ -12,7 +12,7 @@ namespace Ecentria\Bundle\CrontabBundle\Tests\Services;
 
 use Ecentria\Bundle\CrontabBundle\Validator\Constraints\CrontabSyntax;
 use Ecentria\Bundle\CrontabBundle\Validator\Constraints\CrontabSyntaxValidator;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Validator\Context\ExecutionContext;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use PHPUnit_Framework_MockObject_MockObject as Mock;

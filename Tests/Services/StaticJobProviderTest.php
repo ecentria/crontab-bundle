@@ -13,7 +13,7 @@ namespace Ecentria\Bundle\CrontabBundle\Tests\Services;
 use Ecentria\Bundle\CrontabBundle\Model\Job;
 use Ecentria\Bundle\CrontabBundle\Services\HostnameManager;
 use Ecentria\Bundle\CrontabBundle\Services\StaticJobProvider;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 use \PHPUnit_Framework_MockObject_MockObject as Mock;
 
 /**

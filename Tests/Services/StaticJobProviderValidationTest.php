@@ -12,7 +12,7 @@ namespace Ecentria\Bundle\CrontabBundle\Tests\Services;
 
 use Ecentria\Bundle\CrontabBundle\Services\HostnameManager;
 use Ecentria\Bundle\CrontabBundle\Services\StaticJobProvider;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Static job provider test
@@ -29,6 +29,7 @@ class StaticJobProviderValidationTest extends TestCase
      *
      * @return void
      * @throws \PHPUnit_Framework_Exception
+     * @dataProvider getData
      */
     public function test(array $configuration, string $message)
     {
@@ -49,17 +50,17 @@ class StaticJobProviderValidationTest extends TestCase
     {
         return [
             [
-                [
+                'configuration' => [
                     'backend.example.com' => [
                         [
                             'description' => 'foo'
                         ]
                     ]
                 ],
-                'Wrong instance configuration array is given. Array should contain (description, frequency, command, parameters) keys.'
+                'message' => 'Wrong instance configuration array is given. Array should contain (description, frequency, command, parameters) keys.'
             ],
             [
-                [
+                'configuration' => [
                     'backend.example.com' => [
                         [
                             'description' => 'foo',
@@ -67,10 +68,10 @@ class StaticJobProviderValidationTest extends TestCase
                         ]
                     ]
                 ],
-                'Wrong instance configuration array is given. Array should contain (description, frequency, command, parameters) keys.'
+                'message' => 'Wrong instance configuration array is given. Array should contain (description, frequency, command, parameters) keys.'
             ],
             [
-                [
+                'configuration' => [
                     'backend.example.com' => [
                         [
                             'description' => 'foo',
@@ -79,10 +80,10 @@ class StaticJobProviderValidationTest extends TestCase
                         ]
                     ]
                 ],
-                'Wrong instance configuration array is given. Array should contain (description, frequency, command, parameters) keys.'
+                'message' => 'Wrong instance configuration array is given. Array should contain (description, frequency, command, parameters) keys.'
             ],
             [
-                [
+                'configuration' => [
                     0 => [
                         [
                             'description' => 'foo',
@@ -92,7 +93,7 @@ class StaticJobProviderValidationTest extends TestCase
                         ]
                     ]
                 ],
-                'Wrong parameter type. Expected "hostname"  to be string.'
+                'message' => 'Wrong parameter type. Expected "hostname" to be string.'
             ]
         ];
     }
