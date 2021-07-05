@@ -1,4 +1,5 @@
 <?php
+
 /*
  * This file is part of the ecentria group, inc. software.
  *
@@ -54,6 +55,10 @@ class CrontabInstallCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->crontabInstaller->install();
+        if (!$this->crontabInstaller->install()) {
+            return 1;
+        }
+
+        return 0;
     }
 }

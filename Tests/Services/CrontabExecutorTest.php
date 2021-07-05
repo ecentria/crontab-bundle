@@ -13,7 +13,7 @@ namespace Ecentria\Bundle\CrontabBundle\Tests\Services;
 use Ecentria\Bundle\CrontabBundle\Services\CrontabExecutor;
 use Ecentria\Bundle\CrontabBundle\Services\Finder;
 use Ecentria\Bundle\CrontabBundle\Services\JobsCompiler;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 use Symfony\Component\Filesystem\Filesystem;
 use \PHPUnit_Framework_MockObject_MockObject as Mock;
 
@@ -59,14 +59,15 @@ class CrontabExecutorTest extends TestCase
     /**
      * Test render with changes
      *
+     * @param string $actualContent
+     * @param string $renderedContent
+     *
      * @return void
+     * @dataProvider provideChangedContentData
      */
-    public function testRenderWithChanges()
+    public function testRenderWithChanges(string $actualContent, string $renderedContent)
     {
         $filename = 'foo' . DIRECTORY_SEPARATOR . CrontabExecutor::FILENAME;
-
-        $actualContent = 'foo';
-        $renderedContent = 'bar';
 
         $this->jobCompiler->expects($this->once())
             ->method('render')
@@ -112,5 +113,22 @@ class CrontabExecutorTest extends TestCase
             ->method('dumpFile');
 
         $this->assertFalse($this->executor->dump());
+    }
+
+    /**
+     * @return array
+     */
+    public function provideChangedContentData(): array
+    {
+        return [
+            [
+                'actual_content'   => 'foo',
+                'rendered_content' => 'bar',
+            ],
+            [
+                'actual_content'   => 'foo',
+                'rendered_content' => '',
+            ],
+        ];
     }
 }
