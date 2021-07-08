@@ -28,8 +28,13 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $builder = new TreeBuilder();
-        $rootNode = $builder->root(EcentriaCrontabBundle::ALIAS);
+        $builder = new TreeBuilder(EcentriaCrontabBundle::ALIAS);
+        if (method_exists($builder, 'getRootNode')) {
+            $rootNode = $builder->getRootNode();
+        } else {
+            // BC layer for symfony/config 4.1 and older
+            $rootNode = $builder->root(EcentriaCrontabBundle::ALIAS);
+        }
 
         $rootNode
             ->children()
